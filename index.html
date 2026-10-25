@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f5">
+<title>Un poquito de sol para Yessi ☀️</title>
+<style>
+:root{--pink:#ff8fb1;--rose:#e85d86;--peach:#ffd4b8;--cream:#fffaf3;--ink:#60485a;--lav:#d9ccff;--mint:#c9f1df}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 15%,#fff 0 4%,transparent 30%),linear-gradient(135deg,#ffe6ee,#fff1d9 55%,#e9e3ff);overflow-x:hidden}
+button{font:inherit;cursor:pointer;border:0}
+.sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.float{position:absolute;bottom:-50px;animation:rise linear infinite;opacity:.65;font-size:20px}
+@keyframes rise{to{transform:translateY(-115vh) rotate(35deg);opacity:0}}
+.wrap{position:relative;z-index:1;max-width:760px;margin:auto;padding:22px 15px 45px}
+.top{text-align:center;font-size:.83rem;letter-spacing:.12em;text-transform:uppercase;color:#a65d7b;margin:8px 0 15px}
+.panel{display:none;animation:arrive .65s cubic-bezier(.2,.8,.2,1) both}
+.panel.active{display:block}
+@keyframes arrive{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.card{background:rgba(255,250,243,.94);border:1px solid rgba(255,255,255,.9);border-radius:28px;padding:clamp(22px,5vw,42px);box-shadow:0 18px 55px #b9789840;text-align:center;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;inset:9px;border:1px dashed #efb2c6;border-radius:21px;pointer-events:none}
+h1,h2,p{position:relative}
+h1{font-family:Georgia,serif;font-size:clamp(2.2rem,8vw,4.3rem);line-height:1.02;color:#c84f7a;margin:10px 0 15px}
+h2{font-family:Georgia,serif;font-size:clamp(1.7rem,6vw,2.6rem);color:#c84f7a;margin:8px 0 12px}
+p{font-size:1.04rem;line-height:1.75;max-width:570px;margin:12px auto}
+.kicker{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:#b46d87}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:9px 4px 0;padding:13px 20px;border-radius:999px;background:linear-gradient(135deg,#ff9ab8,#ed6e97);color:white;font-weight:700;box-shadow:0 7px 18px #e8799a44;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:saturate(1.12)}
+.btn.secondary{background:#fff;color:#b94e78;border:1px solid #f0b3c8;box-shadow:none}
+.tiny{font-size:.86rem;color:#987c8e}
+.cover{min-height:440px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.envelope{width:min(260px,70vw);height:175px;position:relative;margin:18px auto 25px;background:#f4a5bd;border-radius:12px;box-shadow:0 14px 22px #b96b8b30;cursor:pointer;transition:transform .3s}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(140deg,transparent 49%,#e985a6 50%),linear-gradient(220deg,transparent 49%,#f8b5ca 50%);border-radius:12px}
+.flap{position:absolute;inset:0;background:#ffcfda;clip-path:polygon(0 0,100% 0,50% 64%);transform-origin:top;transition:transform .8s;z-index:3}
+.seal{position:absolute;z-index:4;left:50%;top:52%;transform:translate(-50%,-50%);font-size:38px;transition:opacity .25s}
+.envelope.open .flap{transform:rotateX(180deg)}
+.envelope.open .seal{opacity:0}
+.letterpeek{position:absolute;z-index:2;left:10%;right:10%;top:12px;height:130px;background:#fffaf4;border-radius:8px;display:grid;place-items:center;font-family:Georgia,serif;color:#c84f7a;font-size:1.25rem;transition:transform .8s}
+.envelope.open .letterpeek{transform:translateY(-75px)}
+.sun{font-size:76px;display:inline-block;animation:bob 2.5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-9px) rotate(4deg)}}
+.sparkle{display:inline-block;animation:twinkle 1.4s ease-in-out infinite alternate}
+@keyframes twinkle{to{transform:scale(1.25) rotate(12deg);opacity:.6}}
+.cute-scene{margin:15px auto 20px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.cutie{font-size:clamp(2.5rem,10vw,4rem);display:inline-block;animation:bob 2s ease-in-out infinite}
+.speech{background:#fff;border:1px solid #f6c2d2;border-radius:20px;padding:12px 16px;max-width:260px;box-shadow:0 5px 14px #b978981a}
+.letterbox{width:180px;height:130px;margin:24px auto 10px;position:relative;cursor:pointer}
+.boxbody{position:absolute;bottom:0;width:100%;height:92px;background:#f58eab;border-radius:10px 10px 18px 18px;box-shadow:inset 0 -8px #df6c91}
+.boxslot{position:absolute;z-index:2;top:28px;left:18px;right:18px;height:14px;border-radius:10px;background:#a9446b}
+.boxlid{position:absolute;z-index:3;top:19px;left:-5px;width:190px;height:30px;background:#ffb2c7;border-radius:9px;transform-origin:left;transition:transform .6s}
+.letterbox.open .boxlid{transform:rotate(-22deg) translateY(-8px)}
+.boxheart{position:absolute;z-index:4;top:42px;left:0;right:0;font-size:30px;transition:transform .4s}
+.letterbox.open .boxheart{transform:translateY(-38px) scale(1.3)}
+.notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0}
+.note{background:#fff0c9;border-radius:8px;padding:18px 12px;min-height:115px;box-shadow:0 6px 14px #a9757d20;transform:rotate(-1.5deg);font-family:Georgia,serif;font-size:1.05rem;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.note:nth-child(2){background:#f8d9e8;transform:rotate(1.7deg)}.note:nth-child(3){background:#e4ddff;transform:rotate(1deg)}.note:nth-child(4){background:#dff5e8;transform:rotate(-1.7deg)}
+.note span{font-size:1.5rem;margin-bottom:7px}
+.thread-stage{margin:25px auto 18px;max-width:620px;position:relative;height:205px;background:linear-gradient(145deg,#29254f,#54406d 55%,#8a527c);border-radius:22px;overflow:hidden;box-shadow:inset 0 0 35px #17162b80}
+.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#ffd5e3 1px,transparent 1.5px);background-size:38px 34px,57px 49px;background-position:5px 8px,20px 18px;opacity:.65}
+.person{position:absolute;bottom:25px;font-size:52px;transition:all 1s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 12px #ff9cc5)}
+.person.left{left:9%}.person.right{right:9%;transform:scaleX(-1)}
+.thread-svg{position:absolute;inset:0;width:100%;height:100%}
+.thread-path{fill:none;stroke:#ff9cce;stroke-width:3;stroke-linecap:round;filter:drop-shadow(0 0 5px #ff4fa2);stroke-dasharray:600;stroke-dashoffset:0;transition:all 1s}
+.heartthread{position:absolute;top:38%;left:50%;transform:translate(-50%,-50%);font-size:28px;filter:drop-shadow(0 0 8px #ff9cce);transition:all .8s}
+.thread-stage.closer .person.left{left:31%}.thread-stage.closer .person.right{right:31%}
+.thread-stage.closer .heartthread{transform:translate(-50%,-50%) scale(1.6)}
+.thread-stage.cut .thread-path{stroke-dashoffset:600;opacity:0}
+.thread-stage.cut .heartthread{opacity:0;transform:translate(-50%,-50%) scale(.2)}
+.thread-stage.cut .person.left{left:3%}.thread-stage.cut .person.right{right:3%}
+.result{min-height:90px;margin:15px auto;padding:15px;border-radius:18px;background:#fff0f6;max-width:550px;line-height:1.7}
+.footer{margin:20px 0 0;text-align:center;font-size:.82rem;color:#9c7a8e}
+.progress{display:flex;justify-content:center;gap:7px;margin:0 0 18px}
+.dot{width:7px;height:7px;border-radius:50%;background:#e6b7c9}.dot.on{width:22px;border-radius:9px;background:#d75e88}
+@media(max-width:440px){.notes{grid-template-columns:1fr 1fr}.note{font-size:.93rem;min-height:125px;padding:12px 8px}.card{padding:25px 18px}.thread-stage{height:185px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="sky" id="sky"></div>
+<main class="wrap">
+<div class="top">un detallito hecho con cariño · a little gift made with care 💌</div>
+<div class="progress" id="progress" aria-label="Card progress"></div>
+
+<section class="panel active" id="p0">
+ <div class="card cover">
+  <div class="kicker">para ti, Yessi</div>
+  <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the card">
+   <div class="letterpeek">Hola, Yessi <span>♡</span></div><div class="flap"></div><div class="seal">💌</div>
+  </div>
+  <h1>Un poquito<br>de sol para ti ☀️</h1>
+  <p>Una cartita pequeñita, hecha para recordarte algo bonito.</p>
+  <button class="btn" onclick="openCard()">Abrir mi cartita ✨</button>
+  <p class="tiny">No tienes que hacer nada más que estar aquí un momentito.</p>
+ </div>
+</section>
+
+<section class="panel" id="p1">
+ <div class="card">
+  <div class="sun">☀️</div>
+  <h2>¡Holaaaa, Yessi! 🌷</h2>
+  <div class="cute-scene"><span class="cutie">🐸</span><div class="speech">Última noticia: una ranita vino a recordarte que eres genial. No quiso dar entrevistas. 🐸🎤</div><span class="cutie">🦋</span></div>
+  <p>Este mini comité de animalitos te manda flores imaginarias, abrazos tamaño gigante y permiso oficial para tomarte las cosas con calma.</p>
+  <p><span class="sparkle">✨</span> No hace falta tener un día perfecto para merecer algo bonito. <span class="sparkle">✨</span></p>
+  <button class="btn" onclick="go(2)">Tengo una cosita que decirte 💗</button>
+ </div>
+</section>
+
+<section class="panel" id="p2">
+ <div class="card">
+  <div class="kicker">un mensajito sincero</div>
+  <h2>Quiero que sepas algo 💛</h2>
+  <p>Aunque últimamente no hayamos hablado mucho, eso no significa que haya dejado de desearte cosas bonitas.</p>
+  <p>Me alegra haberte conocido, Yessi. Tienes tu propia manera de ser y de hacer que una conversación se sienta especial. Me importa cómo estás, y de corazón deseo que la vida te regale días más ligeros, momentos tranquilos y razones inesperadas para sonreír.</p>
+  <p>No tienes que fingir que todo está bien conmigo, ni explicarme nada que no quieras contar. Si algún día te apetece hablar, reírte de cualquier tontería o simplemente compartir un ratito, aquí estoy. Y si necesitas espacio, también lo respeto. 🤍</p>
+  <p><strong>Sin presión, sin obligaciones. Solo cariño de verdad.</strong></p>
+  <button class="btn" onclick="go(3)">Hay unas cartitas para ti 💌</button>
+ </div>
+</section>
+
+<section class="panel" id="p3">
+ <div class="card">
+  <div class="kicker">correo especial: 1 ranita, 2 mariposas y mucho cariño</div>
+  <h2>El buzón de Yessi 📮</h2>
+  <div class="letterbox" id="letterbox" onclick="toggleBox()" role="button" tabindex="0" aria-label="Open the letter box">
+   <div class="boxbody"></div><div class="boxslot"></div><div class="boxlid"></div><div class="boxheart">💌</div>
+  </div>
+  <p>Toca el buzón para abrir tus mini-cartitas. ¡El cartero casi se come una por accidente! 🐸</p>
+  <button class="btn" onclick="toggleBox()">Abrir el buzón 📬</button>
+  <div id="notes" class="notes" hidden>
+   <div class="note"><span>🌼</span>Ojalá hoy encuentres una cosita que te haga sonreír.</div>
+   <div class="note"><span>🫶</span>No tienes que poder con todo todos los días.</div>
+   <div class="note"><span>🦋</span>Tu valor no cambia según cómo te sientas hoy.</div>
+   <div class="note"><span>🍓</span>Recordatorio oficial: toma agüita y date un poquito de amor. Firmado: la fresa supervisora 🍓</div>
+  </div>
+  <button class="btn" onclick="go(4)">Una última cosita… 🧵</button>
+ </div>
+</section>
+
+<section class="panel" id="p4">
+ <div class="card">
+  <div class="kicker">dos personitas, un hilito simbólico</div>
+  <h2>¿Qué hacemos con este hilito? 🧵</h2>
+  <p>Imagina que un hilito de luz conecta nuestros dos rinconcitos del mundo. No es una cuerda que te ate ni una promesa que tengas que cumplir; es solo un símbolo de cariño que puedes acercar o soltar libremente.</p>
+  <div class="thread-stage" id="threadStage">
+   <div class="stars"></div><span class="person left" aria-label="Vishal">🧑🏻‍🚀</span><span class="person right" aria-label="Yessi">👩🏻‍🚀</span>
+   <svg class="thread-svg" viewBox="0 0 620 205" preserveAspectRatio="none" aria-hidden="true"><path id="threadPath" class="thread-path" d="M90,126 C190,60 245,165 310,103 C380,45 435,160 530,126"/></svg>
+   <div class="heartthread" id="threadHeart">💗</div>
+  </div>
+  <p>Elige lo que te haga sentir más cómoda. Las dos opciones están bien. 💜</p>
+  <button class="btn" onclick="chooseThread('closer')">🫶 Acércame un poquito</button>
+  <button class="btn secondary" onclick="chooseThread('cut')">🦋 Soltar el hilito con cariño</button>
+  <div class="result" id="threadResult" aria-live="polite">Pase lo que pase, mereces tranquilidad, respeto y cosas buenas. 💛</div>
+  <button class="btn secondary" onclick="go(5)">Terminar con un abrazo virtual 🤗</button>
+ </div>
+</section>
+
+<section class="panel" id="p5">
+ <div class="card">
+  <div class="sun">🌈</div>
+  <h2>Un abrazo hasta donde estés, Yessi 🤗</h2>
+  <p>Gracias por ser parte de un pedacito de mi mundo. Espero que te encuentres con pequeños momentos de paz, gente que te trate bonito y motivos para volver a reírte a carcajadas.</p>
+  <p>Cuídate mucho, ¿sí? Y recuerda: no tienes que responder a esta cartita. Solo quería que te llegara un poquito de cariño. 💗</p>
+  <p style="font-family:Georgia,serif;font-size:1.4rem;color:#c84f7a">Con mucho cariño,<br>Vishal ♡</p>
+  <div class="cute-scene"><span class="cutie">🐸</span><span class="cutie">💌</span><span class="cutie">🐱</span></div>
+  <button class="btn" onclick="restart()">Volver a abrir la cartita ↺</button>
+  <p class="tiny">Hecha con cariño, sin prisa y sin presión. ☀️</p>
+ </div>
+</section>
+<div class="footer">Un recordatorio pequeñito: incluso los días nublados forman parte del cielo. ☁️💗</div>
+</main>
+<script>
+const total=6;let current=0;const progress=document.getElementById('progress');
+for(let i=0;i<total;i++){const d=document.createElement('span');d.className='dot'+(i===0?' on':'');progress.appendChild(d)}
+function updateProgress(){[...progress.children].forEach((d,i)=>d.classList.toggle('on',i===current))}
+function go(n){document.getElementById('p'+current).classList.remove('active');current=n;document.getElementById('p'+current).classList.add('active');updateProgress();window.scrollTo({top:0,behavior:'smooth'})}
+function openCard(){document.getElementById('envelope').classList.add('open');setTimeout(()=>go(1),700)}
+document.getElementById('envelope').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCard()}});
+let boxOpen=false;function toggleBox(){boxOpen=!boxOpen;document.getElementById('letterbox').classList.toggle('open',boxOpen);document.getElementById('notes').hidden=!boxOpen;if(boxOpen)document.getElementById('notes').scrollIntoView({behavior:'smooth',block:'nearest'})}
+document.getElementById('letterbox').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleBox()}});
+function chooseThread(choice){const stage=document.getElementById('threadStage'),result=document.getElementById('threadResult');stage.classList.remove('closer','cut');void stage.offsetWidth;stage.classList.add(choice);if(choice==='closer'){result.innerHTML='💗 <strong>¡Hilito acercado!</strong><br>Qué bonito poder compartir un poquito de cariño. Aquí tienes un abrazo virtual enorme. La distancia no impide desearte cosas lindas. 🫂✨';popHearts()}else{result.innerHTML='🦋 <strong>Hilito soltado con cariño.</strong><br>Soltar también puede ser una forma de cuidar. No hay culpa ni presión; te deseo paz, alegría y cosas bonitas, siempre. Gracias por este ratito. 🤍';popHearts()}}
+function popHearts(){for(let i=0;i<14;i++){const h=document.createElement('div');h.textContent=['💗','✨','🌸','🦋'][Math.floor(Math.random()*4)];h.style.cssText=`position:fixed;z-index:9;left:${20+Math.random()*60}%;top:${45+Math.random()*25}%;font-size:${18+Math.random()*18}px;pointer-events:none;transition:transform 1.8s ease,opacity 1.8s ease;`;document.body.appendChild(h);requestAnimationFrame(()=>{h.style.transform=`translate(${(Math.random()-.5)*180}px,${-120-Math.random()*160}px) rotate(${Math.random()*80-40}deg)`;h.style.opacity='0'});setTimeout(()=>h.remove(),1900)}}
+function restart(){document.getElementById('envelope').classList.remove('open');document.getElementById('letterbox').classList.remove('open');document.getElementById('notes').hidden=true;document.getElementById('threadStage').classList.remove('closer','cut');document.getElementById('threadResult').innerHTML='Pase lo que pase, mereces tranquilidad, respeto y cosas buenas. 💛';go(0)}
+const sky=document.getElementById('sky');for(let i=0;i<22;i++){const f=document.createElement('span');f.className='float';f.textContent=['♡','✦','🌸','💗','🦋'][i%5];f.style.left=(Math.random()*100)+'%';f.style.animationDuration=(9+Math.random()*12)+'s';f.style.animationDelay=(-Math.random()*18)+'s';f.style.fontSize=(13+Math.random()*18)+'px';sky.appendChild(f)}
+</script>
+</body>
+  </html>
