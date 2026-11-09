@@ -1,1 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi personita favorita, Yessi ✨</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Fredoka & Quicksand -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 35%, #e8dff5 70%, #fcf6bd 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-cute {
+      font-family: 'Fredoka', cursive;
+    }
+
+    /* Floating background hearts/stars */
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(105vh) scale(0.6) rotate(0deg);
+        opacity: 0;
+      }
+      15% { opacity: 0.8; }
+      85% { opacity: 0.8; }
+      100% {
+        transform: translateY(-10vh) scale(1.1) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatParticle linear infinite;
+    }
+
+    /* Card Glow */
+    .card-glow {
+      box-shadow: 0 20px 50px -10px rgba(255, 117, 143, 0.35),
+                  0 0 30px 2px rgba(255, 209, 220, 0.5);
+    }
+
+    /* Character idle bobbing */
+    @keyframes gentleBob {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+    }
+    @keyframes gentleBobRight {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(-1.5deg); }
+    }
+    .bob-left {
+      animation: gentleBob 3s ease-in-out infinite;
+    }
+    .bob-right {
+      animation: gentleBobRight 3.2s ease-in-out infinite;
+    }
+
+    /* Thread pulse effect */
+    @keyframes threadGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 3px #ff2a5f) drop-shadow(0 0 8px rgba(255, 42, 95, 0.6));
+        stroke: #ff1e56;
+      }
+      50% {
+        filter: drop-shadow(0 0 6px #ff758f) drop-shadow(0 0 14px rgba(255, 117, 143, 0.8));
+        stroke: #ff4d6d;
+      }
+    }
+    .glowing-thread {
+      animation: threadGlow 2.5s ease-in-out infinite;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Cheek kiss prank cartoon animations */
+    @keyframes popBoop {
+      0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+      60% { transform: scale(1.3) rotate(15deg); opacity: 1; }
+      80% { transform: scale(0.9) rotate(-8deg); }
+      100% { transform: scale(1.1) rotate(0deg); opacity: 1; }
+    }
+    .animate-boop-pop {
+      animation: popBoop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes dizzySpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .spin-dizzy {
+      animation: dizzySpin 2s linear infinite;
+    }
+
+    @keyframes wobbleSurprise {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(-10deg) scale(1.05); }
+      40% { transform: rotate(10deg) scale(1.05); }
+      60% { transform: rotate(-6deg); }
+      80% { transform: rotate(6deg); }
+    }
+    .wobble-surprised {
+      animation: wobbleSurprise 0.6s ease-in-out;
+    }
+
+    /* Heart pulse effect */
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    .pulse-heart {
+      animation: heartbeat 1.2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center p-3 sm:p-6 min-h-screen relative">
+
+  <!-- Background Animated Particles Container -->
+  <div id="particle-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+  <!-- Main Card Container -->
+  <main class="w-full max-w-xl bg-white/80 backdrop-blur-md rounded-3xl p-5 sm:p-8 card-glow border-2 border-white/90 relative z-10 transition-all duration-500">
+    
+    <!-- Top Sweet Badge & Header -->
+    <header class="text-center mb-3">
+      <div class="inline-flex items-center gap-2 bg-pink-100/90 text-pink-600 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide border border-pink-200 shadow-sm mb-2">
+        <span class="pulse-heart text-base">🧶</span>
+        <span>Unidos por el hilo rojo del destino</span>
+        <span class="pulse-heart text-base">✨</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-cute font-bold text-gray-800 tracking-tight">
+        ¡Para ti, mi linda <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500">Yessi</span>! 💖
+      </h1>
+      
+      <p id="header-subtitle" class="text-xs sm:text-sm text-gray-500 mt-1.5 transition-opacity duration-300">
+        No importa la distancia, este hilito siempre nos conecta directo al corazón.
+      </p>
+    </header>
+
+    <!-- Interactive Canvas & Character Stage -->
+    <div class="relative w-full h-64 sm:h-72 bg-gradient-to-b from-rose-50/70 via-pink-50/40 to-purple-50/60 rounded-2xl border border-pink-100 overflow-hidden flex items-center justify-center shadow-inner">
+      
+      <!-- Ambient Sparkles in Stage -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <span class="absolute top-4 left-6 text-yellow-400 text-lg animate-ping opacity-60">✨</span>
+        <span class="absolute bottom-6 right-8 text-pink-400 text-sm animate-pulse opacity-75">🌸</span>
+        <span class="absolute top-8 right-12 text-yellow-300 text-xs animate-bounce opacity-80">⭐</span>
+        <span class="absolute bottom-4 left-10 text-rose-300 text-base animate-pulse">☁️</span>
+      </div>
+
+      <!-- Connecting SVG Thread -->
+      <svg id="thread-svg" class="absolute inset-0 w-full h-full pointer-events-none z-10">
+        <path id="red-thread" class="glowing-thread" d="" fill="none" stroke="#ff2a5f" stroke-width="3" stroke-linecap="round" stroke-dasharray="none" />
+      </svg>
+
+      <!-- Stage Center Hearts burst container for hugs -->
+      <div id="hug-fx-layer" class="absolute inset-0 pointer-events-none z-30 flex items-center justify-center"></div>
+
+      <!-- Characters Stage Wrapper -->
+      <div id="characters-stage" class="w-full h-full relative flex items-center justify-between px-6 sm:px-12 z-20">
+
+        <!-- Character 1: Left (Chibi Bunny / "Yo") -->
+        <div id="char-left" class="char-container flex flex-col items-center cursor-pointer transition-all duration-700 ease-out bob-left relative" onclick="triggerEasterEgg('left')">
+          <span class="text-[10px] sm:text-xs font-bold text-pink-400 uppercase tracking-wider mb-1 bg-white/70 px-2 py-0.5 rounded-full shadow-xs">Yo 🐻</span>
+          
+          <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+            <!-- Left Character SVG (Teddy Bear) -->
+            <svg id="bear-svg" viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+              <!-- Ears -->
+              <circle cx="28" cy="28" r="14" fill="#d4a373" />
+              <circle cx="28" cy="28" r="8" fill="#fcd5ce" />
+              <circle cx="72" cy="28" r="14" fill="#d4a373" />
+              <circle cx="72" cy="28" r="8" fill="#fcd5ce" />
+              
+              <!-- Body -->
+              <ellipse cx="50" cy="72" rx="28" ry="24" fill="#c68b59" />
+              <!-- Tummy -->
+              <ellipse cx="50" cy="74" rx="18" ry="15" fill="#faedcd" />
+              
+              <!-- Head -->
+              <circle cx="50" cy="48" r="28" fill="#d4a373" />
+              
+              <!-- Snout -->
+              <ellipse cx="50" cy="54" rx="12" ry="9" fill="#faedcd" />
+              <ellipse cx="50" cy="50" rx="4" ry="3" fill="#4a3525" />
+              
+              <!-- Bear Mouth (Dynamic) -->
+              <path id="bear-mouth" d="M 47 55 Q 50 58 53 55" stroke="#4a3525" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+              <!-- Eyes (Dynamic) -->
+              <g id="bear-eyes">
+                <circle cx="40" cy="44" r="3.2" fill="#2d1e17" />
+                <circle cx="41" cy="43" r="1.2" fill="#ffffff" />
+                <circle cx="60" cy="44" r="3.2" fill="#2d1e17" />
+                <circle cx="61" cy="43" r="1.2" fill="#ffffff" />
+              </g>
+
+              <!-- Blush -->
+              <ellipse cx="34" cy="52" rx="4.5" ry="3" fill="#ff99a8" opacity="0.75" />
+              <ellipse cx="66" cy="52" rx="4.5" ry="3" fill="#ff99a8" opacity="0.75" />
+
+              <!-- Hands -->
+              <circle cx="26" cy="65" r="7" fill="#c68b59" />
+              <!-- Right hand holding the thread ring -->
+              <circle id="bear-hand-thread" cx="72" cy="62" r="7.5" fill="#c68b59" />
+              <circle cx="72" cy="62" r="3" fill="#ff4d6d" opacity="0.9" />
+            </svg>
+
+            <!-- Playful prank accessories hidden on the left character -->
+            <div id="prank-duck" class="absolute -right-4 -top-3 text-4xl hidden transition-all duration-300">
+              🐥
+            </div>
+            <!-- Funny Party Blower or glasses -->
+            <div id="prank-glasses" class="absolute top-6 left-5 text-2xl hidden">
+              🕶️
+            </div>
+          </div>
+        </div>
+
+        <!-- Center Surprise / Message Badge Overlay -->
+        <div id="center-reaction-badge" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 hidden flex-col items-center pointer-events-none">
+          <div id="badge-content" class="bg-white/95 px-4 py-2 rounded-2xl shadow-xl border-2 border-pink-300 text-center transform scale-0 transition-transform duration-300">
+            <span id="badge-icon" class="text-3xl block mb-0.5">💖</span>
+            <span id="badge-text" class="text-xs sm:text-sm font-cute font-bold text-pink-600 block"></span>
+          </div>
+        </div>
+
+        <!-- Character 2: Right (Cute Bunny / "Yessi") -->
+        <div id="char-right" class="char-container flex flex-col items-center cursor-pointer transition-all duration-700 ease-out bob-right relative" onclick="triggerEasterEgg('right')">
+          <span class="text-[10px] sm:text-xs font-bold text-rose-500 uppercase tracking-wider mb-1 bg-white/70 px-2 py-0.5 rounded-full shadow-xs">Yessi 🐰</span>
+          
+          <div class="relative w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+            <!-- Right Character SVG (Cute Bunny) -->
+            <svg id="bunny-svg" viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+              <!-- Long Bunny Ears -->
+              <g id="bunny-ears">
+                <!-- Left ear -->
+                <ellipse cx="38" cy="22" rx="8" ry="20" fill="#ffffff" transform="rotate(-8 38 22)" stroke="#ffd1dc" stroke-width="1.5" />
+                <ellipse cx="38" cy="22" rx="4.5" ry="14" fill="#ffb3c6" transform="rotate(-8 38 22)" />
+                
+                <!-- Right ear with cute bow -->
+                <ellipse cx="62" cy="22" rx="8" ry="20" fill="#ffffff" transform="rotate(8 62 22)" stroke="#ffd1dc" stroke-width="1.5" />
+                <ellipse cx="62" cy="22" rx="4.5" ry="14" fill="#ffb3c6" transform="rotate(8 62 22)" />
+              </g>
+
+              <!-- Cute Flower/Bow on Ear -->
+              <g transform="translate(62, 28) scale(0.7)">
+                <circle cx="-5" cy="0" r="4" fill="#ff758f" />
+                <circle cx="5" cy="0" r="4" fill="#ff758f" />
+                <circle cx="0" cy="-5" r="4" fill="#ff758f" />
+                <circle cx="0" cy="5" r="4" fill="#ff758f" />
+                <circle cx="0" cy="0" r="3" fill="#ffeaa7" />
+              </g>
+
+              <!-- Bunny Body -->
+              <ellipse cx="50" cy="74" rx="26" ry="22" fill="#ffffff" stroke="#ffd1dc" stroke-width="1.5" />
+              <ellipse cx="50" cy="76" rx="16" ry="13" fill="#fff0f3" />
+
+              <!-- Bunny Head -->
+              <circle cx="50" cy="50" r="26" fill="#ffffff" stroke="#ffd1dc" stroke-width="1.5" />
+
+              <!-- Cute Little Nose -->
+              <polygon points="50,53 48,50 52,50" fill="#ff758f" />
+
+              <!-- Mouth (Dynamic) -->
+              <path id="bunny-mouth" d="M 46 56 Q 50 59 54 56" stroke="#4a3525" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+              <!-- Eyes (Dynamic for Winks / Surprises) -->
+              <g id="bunny-eyes">
+                <!-- Left Eye -->
+                <circle id="bunny-eye-left" cx="39" cy="46" r="3.2" fill="#2d1e17" />
+                <circle cx="40" cy="45" r="1.3" fill="#ffffff" />
+                <!-- Right Eye -->
+                <circle id="bunny-eye-right" cx="61" cy="46" r="3.2" fill="#2d1e17" />
+                <circle cx="62" cy="45" r="1.3" fill="#ffffff" />
+              </g>
+
+              <!-- Rosy Cheeks -->
+              <ellipse cx="32" cy="54" rx="5" ry="3.5" fill="#ff8fa3" opacity="0.8" />
+              <ellipse cx="68" cy="54" rx="5" ry="3.5" fill="#ff8fa3" opacity="0.8" />
+
+              <!-- Hand holding thread ring (Left hand from bunny's perspective) -->
+              <circle id="bunny-hand-thread" cx="28" cy="64" r="6.5" fill="#ffffff" stroke="#ffd1dc" stroke-width="1" />
+              <circle cx="28" cy="64" r="2.8" fill="#ff4d6d" opacity="0.9" />
+              <!-- Other Hand -->
+              <circle cx="72" cy="67" r="6.5" fill="#ffffff" stroke="#ffd1dc" stroke-width="1" />
+            </svg>
+
+            <!-- Surprise exclamation bubble for Yessi -->
+            <div id="prank-reaction-bubble" class="absolute -top-6 -right-2 bg-yellow-300 text-yellow-900 font-cute font-bold text-xs px-2.5 py-1 rounded-full border-2 border-yellow-500 shadow-lg hidden">
+              ¡¿QUÉEE?! 🦆😂
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Dynamic Status / Sweet Dialog Message Area -->
+    <div class="mt-4 p-3.5 bg-pink-50/70 border border-pink-100 rounded-2xl text-center min-h-[64px] flex items-center justify-center transition-all duration-300">
+      <p id="sweet-message" class="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+        ¿Qué te apetece hoy, Yessi? Elige tu opción favorita aquí abajo: 👇
+      </p>
+    </div>
+
+    <!-- Primary Interactive Buttons -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+      
+      <!-- Option 1: Super Abrazo -->
+      <button id="btn-hug" onclick="handleHug()" class="group relative flex items-center justify-center gap-2.5 py-3.5 px-4 bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 text-white font-cute font-bold text-sm sm:text-base rounded-2xl shadow-lg shadow-pink-300/50 hover:shadow-xl hover:shadow-pink-400/60 active:scale-95 transition-all duration-200">
+        <span class="text-xl group-hover:scale-125 transition-transform">🤗</span>
+        <span>Un súper abrazo</span>
+        <span class="text-xs bg-white/25 px-2 py-0.5 rounded-full uppercase tracking-wider font-sans font-bold">Apretadito</span>
+      </button>
+
+      <!-- Option 2: Besito en la mejilla (With funny surprise!) -->
+      <button id="btn-kiss" onclick="handleCheekPrank()" class="group relative flex items-center justify-center gap-2.5 py-3.5 px-4 bg-gradient-to-r from-amber-400 via-rose-400 to-pink-400 text-white font-cute font-bold text-sm sm:text-base rounded-2xl shadow-lg shadow-amber-200/60 hover:shadow-xl active:scale-95 transition-all duration-200">
+        <span class="text-xl group-hover:scale-125 transition-transform">😚</span>
+        <span>Besito en la mejilla</span>
+        <span class="text-xs bg-white/25 px-2 py-0.5 rounded-full uppercase tracking-wider font-sans font-bold">¡Dulce!</span>
+      </button>
+
+    </div>
+
+    <!-- Secondary Actions: Reset & Download Card -->
+    <div class="flex items-center justify-between gap-3 mt-4 pt-3 border-t border-pink-100/80 text-xs">
+      
+      <!-- Reset/Repeat Button -->
+      <button onclick="resetScene()" class="flex items-center gap-1.5 text-gray-500 hover:text-pink-600 font-semibold py-1.5 px-3 rounded-lg hover:bg-pink-50 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        <span>Reiniciar</span>
+      </button>
+
+      <!-- Download Standalone Card Button -->
+      <button onclick="downloadSelf()" class="flex items-center gap-1.5 text-pink-600 bg-pink-100/80 hover:bg-pink-200 font-bold py-1.5 px-3.5 rounded-xl transition-all shadow-xs active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        <span>Guardar tarjeta (.html)</span>
+      </button>
+
+    </div>
+
+  </main>
+
+  <!-- Sweet Little Floating Audio Synthesis (Web Audio API - No external files needed!) -->
+  <script>
+    // Audio synthesizer for cute SFX
+    const AudioFX = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+      },
+      playHugChime() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+          notes.forEach((freq, idx) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.1);
+            gain.gain.setValueAtTime(0.001, this.ctx.currentTime + idx * 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.18, this.ctx.currentTime + idx * 0.1 + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + idx * 0.1 + 0.6);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(this.ctx.currentTime + idx * 0.1);
+            osc.stop(this.ctx.currentTime + idx * 0.1 + 0.65);
+          });
+        } catch (e) {
+          // Audio blocked by browser policy until gesture
+        }
+      },
+      playSqueakBoop() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          // Rubber duck squeak / slide whistle sound
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          
+          osc.frequency.setValueAtTime(320, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(880, this.ctx.currentTime + 0.12);
+          osc.frequency.exponentialRampToValueAtTime(350, this.ctx.currentTime + 0.32);
+
+          gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.36);
+        } catch(e) {}
+      },
+      playPop() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(200, this.ctx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.25, this.ctx.currentTime);
+          gain.gain.linearRam
